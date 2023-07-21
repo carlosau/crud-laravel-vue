@@ -21,5 +21,11 @@ class SkillController extends Controller
         return response()->json("Skill created");
     }
 
+    public function update(StoreSkillRequest $request, Skill $skill)
+    {
+        $skill->update($request->validated());
+        return response()->json("Skill updated");
+    }
+
 
 }
