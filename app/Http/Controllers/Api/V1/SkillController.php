@@ -4,6 +4,8 @@ namespace App\Http\Controllers\Api\V1;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use App\Http\Requests\StoreSkillRequest;
+use App\Models\Skill;
 
 class SkillController extends Controller
 {
@@ -12,4 +14,12 @@ class SkillController extends Controller
     {
         return response()->json("Skill Index");
     }
+
+    public function store(StoreSkillRequest $request)
+    {
+        Skill::create($request->validated());
+        return response()->json("Skill created");
+    }
+
+
 }
