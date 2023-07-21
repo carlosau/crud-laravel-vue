@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Api\V1;
 
+use  App\Http\Resources\V1\SkillResource;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Http\Requests\StoreSkillRequest;
@@ -12,7 +13,12 @@ class SkillController extends Controller
     //
     public function index()
     {
-        return response()->json("Skill Index");
+        return SkillResource::collection(Skill::all());
+    }
+
+    public function show(Skill $skill)
+    {
+        return new SkillResource($skill);
     }
 
     public function store(StoreSkillRequest $request)
