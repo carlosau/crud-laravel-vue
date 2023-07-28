@@ -2,3 +2,7 @@ body {
     background-color: palegreen;
     color: palevioletred;
 }
+
+.strikeout {
+    text-decoration: line-through;
+}
