@@ -40,6 +40,7 @@ const editSkill = (evalue) => {
         placeholder="Add new Skill"
         >
         <button
+        v-bind:disabled="newItem.length < 5"
         class="btn"
         type="submit"
         >
