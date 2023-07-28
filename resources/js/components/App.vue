@@ -3,15 +3,19 @@ import { ref } from 'vue';
 
 const header = ref('Crud App Vue JS')
 const items = ref([
-    {id: 1, label: "Learn Laravel", accomplishedSkill: false},
-    {id: 2, label: "Build Laravel App", accomplishedSkill: false},
-    {id: 3, label: "Earn money with Laravel", accomplishedSkill: false}
+    {id: 1, label: "Learn Laravel", accomplishedSkill: false, isHighPriority: false},
+    {id: 2, label: "Build Laravel App", accomplishedSkill: false, isHighPriority: false},
+    {id: 3, label: "Earn money with Laravel", accomplishedSkill: false, isHighPriority: false}
 ])
+const isHighPriority = ref(false)
 const newItem = ref('')
 const editing = ref(false)
-const isHighPriority = ref(false)
 const addNewItem = () => {
-    items.value.push({id: items.value.length + 1, label: newItem.value})
+    items.value.push({
+        id: items.value.length + 1,
+        label: newItem.value,
+        isHighPriority: isHighPriority.value
+    })
     newItem.value = ''
 }
 const editSkill = (editvalue) => {
@@ -71,7 +75,7 @@ const accomplishedFnUndo = (item) => {
         <li
         v-for="item in items"
         :key="item.id"
-        :class="{strikeout: item.accomplishedSkill}"
+        :class="{strikeout: item.accomplishedSkill, priority: item.isHighPriority}"
         >
         {{ item.label }}
         <button
