@@ -1,5 +1,5 @@
 <script setup>
-import { ref } from 'vue';
+import { ref , computed } from 'vue';
 
 const header = ref('Crud App Vue JS')
 const items = ref([
@@ -8,6 +8,10 @@ const items = ref([
     {id: 3, label: "Earn money with Laravel", accomplishedSkill: false, isHighPriority: false}
 ])
 const isHighPriority = ref(false)
+const characterCount = computed(() => {
+    return newItem.value.length
+})
+const maxAllowedChar = 20
 const newItem = ref('')
 const editing = ref(false)
 const addNewItem = () => {
@@ -56,7 +60,7 @@ const accomplishedFnUndo = (item) => {
         placeholder="Add new Skill"
         >
         <button
-        v-bind:disabled="newItem.length < 5"
+        v-bind:disabled="newItem.length > maxAllowedChar"
         class="btn"
         type="submit"
         >
@@ -70,7 +74,9 @@ const accomplishedFnUndo = (item) => {
         </label>
         ({{ isHighPriority }})
     </form>
-
+    <p v-if="editing" class="counter">
+        {{ characterCount }}/20
+    </p>
     <ul style="list-style: none;">
         <li
         v-for="item in items"

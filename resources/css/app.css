@@ -11,3 +11,10 @@ body {
     color: purple;
     font-weight: bold;
 }
+
+.counter {
+    color: black;
+    padding: 0;
+    margin: 0;
+    font-size: small;
+}
